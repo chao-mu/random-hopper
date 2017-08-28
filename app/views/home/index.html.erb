@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="jumbotron">
+        <% if @pinned.nil? %>
+          <h2 class="display-4">Let's get started</h1>
+          <p class="lead">Hoppers store your tasks and ideas so you can access them later one at a time.</p>
+          <ol>
+            <li>Create a hopper to store what you need to keep track of</li>
+            <li>Add items to that hopper until you're content</li>
+            <li>Pop the hopper to pin a random item stored therein</li>
+          </ol>
+          <p class="lead">If you pop a hopper while an item is pinned, the pinned item will be returned to its hopper.</p>
+        <% else %>
+          <h3 class="display-5">"<%= @pinned.hopper.title %>"</h1>
+          <p class="lead"><%= @pinned.text %></p>
+          <%= link_to "Return", thing_unpin_path(@pinned), method: :post, class: 'btn btn-success' %>
+          <%= link_to "Delete",  @pinned, method: :delete, class: 'btn btn-danger'%>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <h2>Hoppers</h2>
+      <%= form_for Hopper.new, html: {class: 'form-inline'} do |f| %>
+        <%= f.text_field :title, class: 'form-control', placeholder: 'Hopper Title' %>
+        <%= f.submit 'Add', class: 'btn btn-success' %>
+      <% end %>
+      <div id="hopper-accordion" class="panel-group">
+        <% @hoppers.each do |hopper| %>
+          <div class="panel">
+            <div class="panel-heading">
+              <h5 class="panel-title">
+                <a data-toggle="collapse" data-parent="#hopper-accordion" href="#hopper-<%=hopper.id%>"/><%= hopper.title %></a>
+                <span>
+                  - <%= hopper.size > 0 ? link_to("Pop!", hopper_pop_path(hopper), method: :post) : "Empty" %>
+                </span>
+              </h5>
+            </div>
+            <div id="hopper-<%=hopper.id%>" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%= bootstrap_form_for Thing.new do |f| %>
+                  <%= f.text_area :text, label: "New Item", rows: 5, placeholder: 'Enter all the thing...' %>
+                  <%= f.submit 'Add to Hopper', class: "btn btn-success" %>
+                  <%= f.hidden_field :hopper_id, value: hopper.id %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

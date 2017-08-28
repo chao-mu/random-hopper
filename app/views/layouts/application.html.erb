@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Random Hopper</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Random Hopper</a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar">
+          <div class="navbar-right navbar-form">
+            <% if user_signed_in? %>
+              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+            <% else %>
+              <%= bootstrap_form_for :user, url: session_path(:user), layout: :inline do |f| %>
+                <%= f.text_field :email, hide_label: true, placeholder: 'Email' %>
+                <%= f.password_field :password, hide_label: true, placeholder: 'Password' %>
+                <%= f.primary 'Login' %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
+    </div>
+    <div id="flash">
+      <% flash.each do |key, value| %>
+        <% key = key == "error" ? "danger" : key %>
+        <% key = key == "notice" ? "info" : key %>
+        <% key = key == "alert" ? "danger" : key %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+    </div>
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
+  </body>
+</html>

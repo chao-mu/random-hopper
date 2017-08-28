@@ -1,0 +1,8 @@
+.signup {
+	width: 500px;
+	margin-top: 10px;
+}
+
+.login input[type=email], .login input[type=password] {
+	width: 500px;
+}

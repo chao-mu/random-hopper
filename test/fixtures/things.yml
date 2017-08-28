@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hopper: one
+  text: MyText
+
+two:
+  hopper: two
+  text: MyText
