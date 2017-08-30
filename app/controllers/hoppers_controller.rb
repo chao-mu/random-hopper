@@ -1,12 +1,13 @@
 class HoppersController < ApplicationController
+  before_action :set_hopper, only: [:pop, :destroy]
+
   def pop
-    hopper = Hopper.where(user: current_user, id: params[:hopper_id]).first
-    if hopper.nil?
+    if @hopper.nil?
       redirect_back fallback_location: root_path, danger: 'Hopper not found.'
       return
     end
 
-    things = hopper.things.where.not(id: current_user.pinned_thing_id)
+    things = @hopper.things.where.not(id: current_user.pinned_thing_id)
     if things.empty?
       redirect_back fallback_location: root_path, warning: 'Hopper empty!'
       return
@@ -16,6 +17,11 @@ class HoppersController < ApplicationController
     current_user.save
 
     redirect_back fallback_location: root_path, success: 'Hopper popped!'
+  end
+
+  def destroy
+    @hopper.destroy
+    redirect_back fallback_location: root_path
   end
 
   # POST /hoppers
@@ -33,5 +39,19 @@ class HoppersController < ApplicationController
   private
     def hopper_params
       params.require(:hopper).permit(:title)
+    end
+
+
+    def set_hopper
+      if params.has_key? :id
+        id = params[:id]
+      else
+        id = params[:hopper_id]
+      end
+
+      @hopper = Hopper.where(user: current_user, id: id).first
+      if @hopper.nil?
+        redirect_back fallback_location: root_path, danger: 'Hopper not found.'
+      end
     end
 end

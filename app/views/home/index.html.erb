@@ -25,16 +25,20 @@
         <%= f.text_field :title, class: 'form-control', placeholder: 'Hopper Title' %>
         <%= f.submit 'Add', class: 'btn btn-success' %>
       <% end %>
-      <div id="hopper-accordion" class="panel-group">
+      <div id="hopper-accordion" class="panel-group hoppers">
         <% @hoppers.each do |hopper| %>
           <div class="panel">
             <div class="panel-heading">
               <h5 class="panel-title">
                 <a data-toggle="collapse" data-parent="#hopper-accordion" href="#hopper-<%=hopper.id%>"/><%= hopper.title %></a>
-                <span>
-                  - <%= hopper.size > 0 ? link_to("Pop!", hopper_pop_path(hopper), method: :post) : "Empty" %>
-                </span>
               </h5>
+              <div class="buttons">
+                <%= link_to "Delete", hopper_path(hopper), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: "Are you sure you want to delete hopper \"#{hopper.title}\"?" } %>
+                <%= link_to "Add Task", "#hopper-" + hopper.id.to_s, class: "btn btn-success btn-xs", "data-toggle": "collapse", "data-parent":"#hopper-accordion" %>
+                <% if hopper.size > 0 %>
+                  <%= link_to "Pop!", hopper_pop_path(hopper), method: :post, class: "btn btn-primary btn-xs" %>
+                <% end %>
+              </div>
             </div>
             <div id="hopper-<%=hopper.id%>" class="panel-collapse collapse">
               <div class="panel-body">

@@ -1,6 +1,6 @@
 class Hopper < ApplicationRecord
   belongs_to :user
-  has_many :things
+  has_many :things, dependent: :destroy
 
   validates :title, presence: true
 
