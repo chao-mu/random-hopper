@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class ThingsTest < ApplicationSystemTestCase
+class TasksTest < ApplicationSystemTestCase
   # test "visiting the index" do
   #   visit things_url
   #

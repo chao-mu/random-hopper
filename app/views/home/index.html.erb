@@ -4,17 +4,17 @@
       <div class="jumbotron">
         <% if @pinned.nil? %>
           <h2 class="display-4">Let's get started</h1>
-          <p class="lead">Hoppers store your tasks and ideas so you can access them later one at a time.</p>
+          <p class="lead">Hoppers store your tasks so you can access them later one at a time.</p>
           <ol>
             <li>Create a hopper to store what you need to keep track of</li>
-            <li>Add items to that hopper until you're content</li>
-            <li>Pop the hopper to pin a random item stored therein</li>
+            <li>Add tasks at hopper until you're content</li>
+            <li>Pop the hopper to pin a random task stored therein</li>
           </ol>
-          <p class="lead">If you pop a hopper while an item is pinned, the pinned item will be returned to its hopper.</p>
+          <p class="lead">If you pop a hopper while a task is pinned, the pinned task will be returned to its hopper.</p>
         <% else %>
           <h3 class="display-5">"<%= @pinned.hopper.title %>"</h1>
           <p class="lead"><%= @pinned.text %></p>
-          <%= link_to "Return", thing_unpin_path(@pinned), method: :post, class: 'btn btn-success' %>
+          <%= link_to "Return", task_unpin_path(@pinned), method: :post, class: 'btn btn-success' %>
           <%= link_to "Delete",  @pinned, method: :delete, class: 'btn btn-danger'%>
         <% end %>
       </div>
@@ -42,8 +42,8 @@
             </div>
             <div id="hopper-<%=hopper.id%>" class="panel-collapse collapse">
               <div class="panel-body">
-                <%= bootstrap_form_for Thing.new do |f| %>
-                  <%= f.text_area :text, label: "New Item", rows: 5, placeholder: 'Enter all the thing...' %>
+                <%= bootstrap_form_for Task.new do |f| %>
+                  <%= f.text_area :text, label: "New Task", rows: 5, placeholder: 'Enter a description of the task' %>
                   <%= f.submit 'Add to Hopper', class: "btn btn-success" %>
                   <%= f.hidden_field :hopper_id, value: hopper.id %>
                 <% end %>

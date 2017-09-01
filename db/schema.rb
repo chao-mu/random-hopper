@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170826215114) do
+ActiveRecord::Schema.define(version: 20170901214016) do
 
   create_table "hoppers", force: :cascade do |t|
     t.string "title"
@@ -20,12 +20,12 @@ ActiveRecord::Schema.define(version: 20170826215114) do
     t.index ["user_id"], name: "index_hoppers_on_user_id"
   end
 
-  create_table "things", force: :cascade do |t|
+  create_table "tasks", force: :cascade do |t|
     t.integer "hopper_id"
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["hopper_id"], name: "index_things_on_hopper_id"
+    t.index ["hopper_id"], name: "index_tasks_on_hopper_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -41,9 +41,9 @@ ActiveRecord::Schema.define(version: 20170826215114) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "pinned_thing_id"
+    t.integer "pinned_task_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["pinned_thing_id"], name: "index_users_on_pinned_thing_id"
+    t.index ["pinned_task_id"], name: "index_users_on_pinned_task_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

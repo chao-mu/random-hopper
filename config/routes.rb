@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :things do
+  resources :tasks do
     post 'unpin'
   end
 
-  resources :hoppers do 
+  resources :hoppers do
     post 'pop'
   end
 

@@ -7,13 +7,13 @@ class HoppersController < ApplicationController
       return
     end
 
-    things = @hopper.things.where.not(id: current_user.pinned_thing_id)
-    if things.empty?
+    tasks = @hopper.tasks.where.not(id: current_user.pinned_task_id)
+    if tasks.empty?
       redirect_back fallback_location: root_path, warning: 'Hopper empty!'
       return
     end
 
-    current_user.pinned_thing = things.sample
+    current_user.pinned_task = tasks.sample
     current_user.save
 
     redirect_back fallback_location: root_path, success: 'Hopper popped!'
