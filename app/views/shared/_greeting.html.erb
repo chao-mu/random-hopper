@@ -1,0 +1,9 @@
+<div class="jumbotron" id="greeting">
+  <% if current_user.hoppers.empty? %>
+    <%= render "shared/greeting_get_started" %>
+  <% elsif current_user.pinned_task.nil? %>
+    <%= render "shared/greeting_no_pinned" %>
+  <% else %>
+    <%= render "shared/greeting_pinned" %>
+  <% end %>
+</div>

@@ -1,0 +1,5 @@
+<div id="hopper-accordion" class="panel-group hoppers">
+  <% @hoppers.each do |hopper| %>
+    <%= render "hoppers/hopper", hopper: hopper %>
+  <% end %>
+</div>

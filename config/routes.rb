@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
-  resources :tasks do
-    post 'unpin'
+  resources :hoppers do
+    resources :tasks
   end
 
-  resources :hoppers do
-    post 'pop'
-  end
+  post 'hoppers/:id/pop', to: "hoppers#pop", as: :hopper_pop
+
+  post "tasks/:id/unpin", to: "tasks#unpin", as: :task_unpin
 
   authenticated :user do
-      root :to => 'home#index', as: :authenticated_root
+      root :to => 'hoppers#index', as: :authenticated_root
   end
   root :to => 'welcome#index'
 

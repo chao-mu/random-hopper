@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <%= render "shared/greeting", hoppers: @hoppers %>
+    </div>
+    <div class="col-lg-6">
+      <h2>Hoppers</h2>
+      <%= bootstrap_form_for Hopper.new, html: {class: 'form-inline'} do |f| %>
+        <%= f.text_field :title, hide_label: true, placeholder: 'Hopper Title' %>
+        <%= f.submit 'Add', class: "btn btn-success"%>
+      <% end %>
+      <%= render "hoppers/hoppers", hoppers: @hoppers %>
+    </div>
+  </div>
+</div>

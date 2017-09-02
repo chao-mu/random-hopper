@@ -1,11 +1,24 @@
 class TasksController < ApplicationController
+  include HopperSetter
+
   before_action :set_task, only: [:destroy]
+
+  def create
+    @task = Task.new(task_params)
+    @hopper.tasks << @task
+
+    # TODO: handle fail
+    @hopper.save
+  end
 
   def unpin
     current_user.pinned_task = nil
     current_user.save
 
-    redirect_back fallback_location: root_path
+    respond_to do |format|
+      format.js {render "shared/refresh_greeting"}
+      format.html { redirect_back fallback_location: root_path }
+    end
   end
 
   def destroy
@@ -15,23 +28,11 @@ class TasksController < ApplicationController
     end
     @task.destroy
 
-    redirect_back fallback_location: root_path, success: 'DESTROYED!!!!'
+    redirect_back fallback_location: root_path
   end
 
   # POST /tasks
-  def create
-    @task = Task.new(task_params)
-    if @task.hopper.user != current_user
-      redirect_back fallback_location: root_path, danger: 'Not authorized'
-      return
-    end
 
-    if @task.save
-      redirect_back fallback_location: root_path, success: 'task successfully added to hopper.'
-    else
-      redirect_back fallback_location: root_path
-    end
-  end
 
   private
     def set_task
@@ -41,7 +42,8 @@ class TasksController < ApplicationController
       end
     end
 
+
     def task_params
-      params.require(:task).permit(:hopper_id, :text)
+      params.require(:task).permit(:text)
     end
 end

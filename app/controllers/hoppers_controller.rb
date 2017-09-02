@@ -1,5 +1,10 @@
 class HoppersController < ApplicationController
-  before_action :set_hopper, only: [:pop, :destroy]
+  include HopperSetter
+
+  def index
+    @hoppers = current_user.hoppers
+    @pinned = current_user.pinned_task
+  end
 
   def pop
     if @hopper.nil?
@@ -16,7 +21,10 @@ class HoppersController < ApplicationController
     current_user.pinned_task = tasks.sample
     current_user.save
 
-    redirect_back fallback_location: root_path, success: 'Hopper popped!'
+    respond_to do |format|
+      format.js { render "shared/refresh_greeting" }
+      format.html { redirect_back fallback_location: root_path }
+    end
   end
 
   def destroy
@@ -36,22 +44,14 @@ class HoppersController < ApplicationController
     end
   end
 
+  protected
+
+  def hopper_id_key
+    :id
+  end
+
   private
     def hopper_params
       params.require(:hopper).permit(:title)
-    end
-
-
-    def set_hopper
-      if params.has_key? :id
-        id = params[:id]
-      else
-        id = params[:hopper_id]
-      end
-
-      @hopper = Hopper.where(user: current_user, id: id).first
-      if @hopper.nil?
-        redirect_back fallback_location: root_path, danger: 'Hopper not found.'
-      end
     end
 end

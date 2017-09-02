@@ -1,0 +1,6 @@
+<% pinned = current_user.pinned_task %>
+<h3 class="display-5">"<%= pinned.hopper.title %>"</h1>
+<p class="lead"><%= simple_format(pinned.text) %></p>
+<%= link_to "Delete", [pinned.hopper, pinned], method: :delete, class: 'btn btn-danger'%>
+<%= link_to "Do Later", task_unpin_path(pinned), method: :post, class: 'btn btn-success' %>
+<%= link_to "Finish", [pinned.hopper, pinned], method: :delete, class: 'btn btn-primary' %>
