@@ -3,28 +3,51 @@ class HoppersController < ApplicationController
 
   def index
     @hoppers = current_user.hoppers
-    @pinned = current_user.pinned_task
+    @pinned = current_user.pinned_hopper
   end
 
-  def pop
-    if @hopper.nil?
-      redirect_back fallback_location: root_path, danger: 'Hopper not found.'
-      return
+  def pin
+    current_user.pinned_hopper = @hopper
+    current_user.save!
+
+    if @hopper.pinned_task.nil? && !@hopper.tasks.empty?
+      @hopper.pinned_task = @hopper.tasks.sample
+      @hopper.save!
     end
 
-    tasks = @hopper.tasks.where.not(id: current_user.pinned_task_id)
-    if tasks.empty?
+    redirect_back fallback_location: root_path
+  end
+
+  def unpin
+    @hopper.unpin
+    redirect_back fallback_location: root_path
+  end
+
+  def start
+    if @hopper.tasks.empty?
       redirect_back fallback_location: root_path, warning: 'Hopper empty!'
       return
     end
 
-    current_user.pinned_task = tasks.sample
-    current_user.save
+    @hopper.pinned_task = @hopper.tasks.sample
+    @hopper.save!
 
-    respond_to do |format|
-      format.js { render "shared/refresh_greeting" }
-      format.html { redirect_back fallback_location: root_path }
+    redirect_back fallback_location: root_path
+  end
+
+  def do_other
+    tasks = @hopper.tasks_not_pinned
+    if tasks.empty?
+      @hopper.pinned_task = nil
+      @hopper.save!
+      redirect_back fallback_location: root_path, warning: 'No other tasks!'
+      return
     end
+
+    @hopper.pinned_task = tasks.sample
+    @hopper.save!
+
+    redirect_back fallback_location: root_path
   end
 
   def destroy
