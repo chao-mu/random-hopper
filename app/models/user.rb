@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  belongs_to :pinned_task, class_name: "Task", optional: true
+  belongs_to :pinned_hopper, class_name: "Hopper", optional: true
+  
   has_many :hoppers
 
   # Include default devise modules. Others available are:

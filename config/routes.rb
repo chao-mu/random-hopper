@@ -3,9 +3,10 @@ Rails.application.routes.draw do
     resources :tasks
   end
 
-  post 'hoppers/:id/pop', to: "hoppers#pop", as: :hopper_pop
-
-  post "tasks/:id/unpin", to: "tasks#unpin", as: :task_unpin
+  post 'hoppers/:id/start', to: "hoppers#start", as: :hopper_start
+  post 'hoppers/:id/do_other', to: "hoppers#do_other", as: :hopper_do_other
+  post "hoppers/:id/unpin", to: "hoppers#unpin", as: :hopper_unpin
+  post "hoppers/:id/pin", to: "hoppers#pin", as: :hopper_pin
 
   authenticated :user do
       root :to => 'hoppers#index', as: :authenticated_root

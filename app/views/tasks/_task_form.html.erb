@@ -1,0 +1,4 @@
+<%= bootstrap_form_for [hopper, Task.new], remote: true do |f| %>
+  <%= f.text_area :text, label: "New Task", rows: 5, placeholder: 'Enter a description of the task' %>
+  <%= f.submit 'Add to Hopper', class: "btn btn-success" %>
+<% end %>

@@ -1,6 +1,16 @@
-<% pinned = current_user.pinned_task %>
-<h3 class="display-5">"<%= pinned.hopper.title %>"</h1>
-<p class="lead"><%= simple_format(pinned.text) %></p>
-<%= link_to "Delete", [pinned.hopper, pinned], method: :delete, class: 'btn btn-danger'%>
-<%= link_to "Do Later", task_unpin_path(pinned), method: :post, class: 'btn btn-success' %>
-<%= link_to "Finish", [pinned.hopper, pinned], method: :delete, class: 'btn btn-primary' %>
+<% hopper = current_user.pinned_hopper %>
+<% task = hopper.pinned_task %>
+<h3 class="display-5">"<%= hopper.title %>"</h3>
+<% if task.nil? %>
+  <% if hopper.tasks.empty? %>
+    <p class="lead">Hopper is empty!</p>
+  <% else %>
+    <p class="lead">No tasks underway.</p>
+    <%= link_to "Start", hopper_start_path(hopper), method: :post, class: 'btn btn-success'%>
+  <% end %>
+<% else %>
+  <p class="lead"><%= simple_format(task.text) %></p>
+  <%= link_to "Delete", [task.hopper, task], method: :delete, class: 'btn btn-danger'%>
+  <%= link_to "Do later", hopper_do_other_path(hopper), method: :post, class: 'btn btn-success' %>
+  <%= link_to "Finish", [task.hopper, task], method: :delete, class: 'btn btn-primary' %>
+<% end %>

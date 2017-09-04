@@ -6,33 +6,19 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @hopper.tasks << @task
-
-    # TODO: handle fail
-    @hopper.save
-  end
-
-  def unpin
-    current_user.pinned_task = nil
-    current_user.save
-
-    respond_to do |format|
-      format.js {render "shared/refresh_greeting"}
-      format.html { redirect_back fallback_location: root_path }
-    end
+    @hopper.save!
   end
 
   def destroy
-    if current_user.pinned_task.id == @task.id
-      current_user.pinned_task = nil
-      current_user.save
+    if @task.hopper.pinned_task == @task
+      @task.hopper.pinned_task = nil
+      @task.hopper.save!
     end
+
     @task.destroy
 
     redirect_back fallback_location: root_path
   end
-
-  # POST /tasks
-
 
   private
     def set_task
