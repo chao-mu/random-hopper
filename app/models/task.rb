@@ -1,6 +1,8 @@
 class Task < ApplicationRecord
   belongs_to :hopper
 
+  validates :text, presence: true
+
   before_destroy :unpin
 
   def unpin
