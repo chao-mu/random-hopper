@@ -6,6 +6,9 @@
     <p class="lead">Hopper is empty!</p>
   <% else %>
     <p class="lead">No tasks underway.</p>
+  <% end %>
+  <%= render "tasks/task_modal_toggle", class: "btn btn-primary", hopper: hopper %>
+  <% unless hopper.tasks.empty? %>
     <%= link_to "Start", hopper_start_path(hopper), method: :post, class: 'btn btn-success'%>
   <% end %>
 <% else %>

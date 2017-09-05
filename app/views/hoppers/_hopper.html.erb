@@ -1,21 +1,13 @@
-<div class="panel" id="hopper-<%=hopper.id%>-panel">
-  <div class="panel-heading">
-    <h5 class="panel-title">
-      <a data-toggle="collapse" data-parent="#hopper-accordion" href="#hopper-<%=hopper.id%>"/><%= hopper.title %></a>
-    </h5>
-    <div class="buttons">
-      <%= link_to "Delete", hopper, method: :delete, class: "btn btn-danger btn-xs", data: { confirm: "Are you sure you want to delete hopper \"#{hopper.title}\"?" } %>
-      <%= link_to "Add Task", "#hopper-" + hopper.id.to_s, class: "btn btn-success btn-xs", "data-toggle": "collapse", "data-parent":"#hopper-accordion" %>
-      <% if current_user.pinned_hopper == hopper %>
-        <%= link_to "Unpin", hopper_unpin_path(hopper), method: :post, class: "btn btn-primary btn-xs" %>
-      <% else %>
-        <%= link_to "Pin", hopper_pin_path(hopper), method: :post, class: "btn btn-primary btn-xs" %>
-      <% end %>
-    </div>
-  </div>
-  <div id="hopper-<%=hopper.id%>" class="panel-collapse <%= local_assigns.has_key?(:open) && local_assigns[:open] ? '' : 'collapse' %>">
-    <div class="panel-body">
-      <%= render "tasks/task_form", hopper: hopper %>
-    </div>
+<div class="hopper">
+  <h5><%= hopper.title %></h5>
+  <div>
+    <%= link_to "Delete", hopper, method: :delete, class: "btn btn-danger btn-xs", data: { confirm: "Are you sure you want to delete hopper \"#{hopper.title}\"?" } %>
+    <%= render "tasks/task_modal_toggle", class: "btn btn-success btn-xs", hopper: hopper %>
+    <% if current_user.pinned_hopper == hopper %>
+      <%= link_to "Unpin", hopper_unpin_path(hopper), method: :post, class: "btn btn-primary btn-xs" %>
+    <% else %>
+      <%= link_to "Pin", hopper_pin_path(hopper), method: :post, class: "btn btn-primary btn-xs" %>
+    <% end %>
   </div>
 </div>
+<%= render "tasks/task_modal", hopper: hopper %>

@@ -1,5 +1,6 @@
-<div id="hopper-accordion" class="panel-group hoppers">
+<div class="panel-group hoppers">
   <% @hoppers.each do |hopper| %>
+    <hr>
     <%= render "hoppers/hopper", hopper: hopper %>
   <% end %>
 </div>

@@ -1,0 +1,20 @@
+<div id="addTaskTo<%= hopper.id %>" class="modal fade add-task-modal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Task to "<%= hopper.title %>"</h4>
+      </div>
+      <%= bootstrap_form_for [hopper, Task.new], remote: true do |f| %>
+        <div class="modal-body">
+          <%= f.text_area :text, label: "Task", rows: 5, placeholder: 'Enter a description of the task', data: {focus: true} %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= f.submit 'Add to Hopper', class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

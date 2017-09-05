@@ -1,3 +1,6 @@
 <%= render "shared/refresh_greeting" %>
 <%= render "hoppers/refresh_hopper", hopper: @task.hopper, open: true%>
-$("#task_text").val("");
+
+var form = $("#addTaskTo<%= @task.hopper.id %> form");
+form.trigger("reset");
+form.find("[data-focus]").focus();
