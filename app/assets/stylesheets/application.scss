@@ -16,7 +16,7 @@
 
 @import 'bootstrap';
 
-p.finished {
+p.encourage {
   font-weight: bold;
   margin-top: 10px;
   margin-bottom: 15px;
@@ -24,4 +24,12 @@ p.finished {
   -ms-transform: rotate(-3deg); /* IE 9 */
   -webkit-transform: rotate(-3deg); /* Chrome, Safari, Opera */
   transform: rotate(-3deg);
+}
+
+p.encourage::before {
+  content: "☆ "
+}
+
+p.encourage::after {
+  content: " ☆"
 }
