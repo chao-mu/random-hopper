@@ -2,6 +2,7 @@
   <h5><%= hopper.title %></h5>
   <div>
     <%= link_to "Delete", hopper, method: :delete, class: "btn btn-danger btn-xs", data: { confirm: "Are you sure you want to delete hopper \"#{hopper.title}\"?" } %>
+    <%= link_to "Export", hopper_export_path(hopper), class: "btn btn-default btn-xs" %>
     <%= render "tasks/task_modal_toggle", class: "btn btn-success btn-xs", hopper: hopper %>
     <% if current_user.pinned_hopper == hopper %>
       <%= link_to "Unpin", hopper_unpin_path(hopper), method: :post, class: "btn btn-primary btn-xs" %>

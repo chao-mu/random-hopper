@@ -3,7 +3,7 @@
 <h3 class="display-5">"<%= hopper.title %>"</h3>
 <% if task.nil? %>
   <% if flash[:finished] %>
-    <p class="lead finished"><%= flash[:finished] %></p>
+    <p class="finished"><%= flash[:finished] %></p>
   <% end %>
   <% if hopper.tasks.empty? %>
     <p class="lead">Hopper is empty!</p>

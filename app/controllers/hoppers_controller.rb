@@ -6,6 +6,10 @@ class HoppersController < ApplicationController
     @pinned = current_user.pinned_hopper
   end
 
+  def export
+    send_data @hopper.to_csv, filename: "#{@hopper.title}-#{Date.today.to_formatted_s(:db)}.csv"
+  end
+
   def pin
     current_user.pinned_hopper = @hopper
     current_user.save!
@@ -38,8 +42,7 @@ class HoppersController < ApplicationController
   def do_other
     tasks = @hopper.tasks_not_pinned
     if tasks.empty?
-      @hopper.pinned_task = nil
-      @hopper.save!
+      @hopper_unpin
       redirect_back fallback_location: root_path, warning: 'No other tasks!'
       return
     end

@@ -16,7 +16,12 @@
 
 @import 'bootstrap';
 
-.finished {
+p.finished {
   font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 15px;
   font-style: italic;
+  -ms-transform: rotate(-3deg); /* IE 9 */
+  -webkit-transform: rotate(-3deg); /* Chrome, Safari, Opera */
+  transform: rotate(-3deg);
 }

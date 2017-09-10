@@ -1,3 +1,5 @@
+require 'csv'
+
 class Hopper < ApplicationRecord
   belongs_to :user
   has_many :tasks, dependent: :destroy
@@ -22,5 +24,17 @@ class Hopper < ApplicationRecord
     end
 
     count
+  end
+
+  def to_csv
+    attributes = %w{text created_at}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      self.tasks.each do |task|
+        csv << attributes.map{ |attr| task.send(attr) }
+      end
+    end
   end
 end
