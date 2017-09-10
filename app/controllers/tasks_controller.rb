@@ -40,7 +40,7 @@ class TasksController < ApplicationController
     def set_task
       @task = Task.find(params.fetch(:task_id, params[:id]))
       if @task.hopper.user != current_user
-        redirect_back fallback_location: root_path, danger: 'Not authorized'
+        redirect_back fallback_location: root_path, error: 'Not authorized'
       end
     end
 

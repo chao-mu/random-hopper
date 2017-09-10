@@ -29,7 +29,7 @@ class HoppersController < ApplicationController
 
   def start
     if @hopper.tasks.empty?
-      redirect_back fallback_location: root_path, warning: 'Hopper empty!'
+      redirect_back fallback_location: root_path, alert: 'Hopper empty!'
       return
     end
 
@@ -41,9 +41,9 @@ class HoppersController < ApplicationController
 
   def do_other
     tasks = @hopper.tasks_not_pinned
-    if tasks.empty?
-      @hopper.unpin
-      redirect_back fallback_location: root_path, warning: 'No other tasks!'
+    if tasks.empty? && !@hopper.pinned_task.nil?
+      @hopper.pinned_task.unpin
+      redirect_back fallback_location: root_path, alert: 'No other tasks!'
       return
     end
 

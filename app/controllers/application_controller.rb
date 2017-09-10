@@ -3,5 +3,5 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   # Bootstrap flash types
-  add_flash_types :success, :danger, :warning, :info
+  add_flash_types :success
 end
