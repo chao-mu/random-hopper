@@ -40,14 +40,11 @@
       </div>
     </nav>
     </div>
-    <div id="flash">
-      <% flash.each do |key, value| %>
-        <% key = key == "error" ? "danger" : key %>
-        <% key = key == "notice" ? "info" : key %>
-        <% key = key == "alert" ? "danger" : key %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
+    <% flash.each do |key, value| %>
+      <% if is_flash_alert(key) %>
+        <%= flash_alert(key, value) %>
       <% end %>
-    </div>
+    <% end %>
     <div class="container-fluid">
       <%= yield %>
     </div>

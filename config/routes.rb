@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :hoppers do
-    resources :tasks
+    resources :tasks do
+      post "finish"
+    end
   end
 
   post 'hoppers/:id/start', to: "hoppers#start", as: :hopper_start

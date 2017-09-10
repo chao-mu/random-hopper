@@ -2,6 +2,9 @@
 <% task = hopper.pinned_task %>
 <h3 class="display-5">"<%= hopper.title %>"</h3>
 <% if task.nil? %>
+  <% if flash[:finished] %>
+    <p class="lead finished"><%= flash[:finished] %></p>
+  <% end %>
   <% if hopper.tasks.empty? %>
     <p class="lead">Hopper is empty!</p>
   <% else %>
@@ -15,5 +18,5 @@
   <p class="lead"><%= simple_format(task.text) %></p>
   <%= link_to "Delete", [task.hopper, task], method: :delete, class: 'btn btn-danger'%>
   <%= link_to "Do later", hopper_do_other_path(hopper), method: :post, class: 'btn btn-success' %>
-  <%= link_to "Finish", [task.hopper, task], method: :delete, class: 'btn btn-primary' %>
+  <%= link_to "Finish", hopper_task_finish_path(hopper, task), method: :post, class: 'btn btn-primary' %>
 <% end %>
