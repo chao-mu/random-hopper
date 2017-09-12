@@ -17,21 +17,26 @@
 @import 'bootstrap';
 
 p.encourage {
-  font-weight: bold;
-  margin-top: 10px;
-  margin-bottom: 15px;
-  font-style: italic;
-  -ms-transform: rotate(-3deg); /* IE 9 */
-  -webkit-transform: rotate(-3deg); /* Chrome, Safari, Opera */
-  transform: rotate(-3deg);
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-style: italic;
+    -ms-transform: rotate(-3deg); /* IE 9 */
+    -webkit-transform: rotate(-3deg); /* Chrome, Safari, Opera */
+    transform: rotate(-3deg);
 }
 
 p.encourage::before {
-  content: "☆ "
+    content: "☆ ";
 }
 
 p.encourage::after {
-  content: " ☆"
+    content: " ☆";
+}
+
+.navbar {
+    padding: 0px 10px;
+    margin: 0;
 }
 
 .navbar-logo {
@@ -41,4 +46,8 @@ p.encourage::after {
 
 .navbar-logo img {
     height: 100%;
+}
+
+.content {
+    padding: 0;
 }

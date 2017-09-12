@@ -14,8 +14,7 @@
   </head>
 
   <body>
-    <div class="container-fluid">
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header vcenter">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
@@ -42,13 +41,12 @@
         </div>
       </div>
     </nav>
-    </div>
     <% flash.each do |key, value| %>
       <% if is_flash_alert(key) %>
         <%= flash_alert(key, value) %>
       <% end %>
     <% end %>
-    <div class="container-fluid">
+    <div class="container-fluid content">
       <%= yield %>
     </div>
   </body>
