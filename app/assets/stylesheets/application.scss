@@ -35,14 +35,21 @@ p.encourage::after {
 }
 
 .navbar {
-    padding: 0;
-    padding-left: 15px;
     margin: 0;
+    padding: 0 ($jumbotron-padding / 2);
+    @media(min-width: $screen-sm-min){
+        padding: 0 ($jumbotron-padding * 2);
+    }
+ }
+
+.navbar-right {
+    padding-right: 0px;
 }
 
 .navbar-logo {
     @extend .navbar-brand;
     padding: 10px;
+    padding-left: 0px;
 }
 
 .navbar-logo img {
