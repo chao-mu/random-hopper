@@ -35,10 +35,15 @@ p.encourage::after {
 }
 
 .navbar {
-    margin: 0;
-    padding: 0 ($jumbotron-padding / 2);
+    margin-bottom: 0px;
+}
+
+.navbar, .content, .flash-alert {
+    padding-left: ($jumbotron-padding / 2);
+    padding-right: ($jumbotron-padding / 2);
     @media(min-width: $screen-sm-min){
-        padding: 0 ($jumbotron-padding * 2);
+        padding-left: ($jumbotron-padding * 2);
+        padding-right: ($jumbotron-padding * 2);
     }
  }
 
@@ -54,8 +59,4 @@ p.encourage::after {
 
 .navbar-logo img {
     height: 100%;
-}
-
-.content {
-    padding: 0;
 }

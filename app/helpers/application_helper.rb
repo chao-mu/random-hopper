@@ -12,6 +12,6 @@ module ApplicationHelper
 
   def flash_alert(key, value)
     class_name = FLASH_TO_BOOTSTRAP.fetch(key, "alert-#{key}")
-    content_tag(:div, value, class: "alert #{class_name}")
+    content_tag(:div, value, class: "flash-alert alert alert #{class_name}")
   end
 end

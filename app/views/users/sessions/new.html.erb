@@ -1,16 +1,14 @@
-<div class="container login">
-  <h2>Log in</h2>
+<h2>Log in</h2>
 
-  <%= bootstrap_form_for resource, as: resource_name, url: session_path(resource_name) do |f| %>
-    <%= f.email_field :email, autofocus: true %>
-    <%= f.password_field :password %>
+<%= bootstrap_form_for resource, as: resource_name, url: session_path(resource_name) do |f| %>
+  <%= f.email_field :email, autofocus: true %>
+  <%= f.password_field :password %>
 
-    <% if devise_mapping.rememberable? -%>
-      <%= f.check_box :remember_me %>
-    <% end -%>
+  <% if devise_mapping.rememberable? -%>
+    <%= f.check_box :remember_me %>
+  <% end -%>
 
-    <!-- %= link_to "Forgot Password", new_password_path(resource_name), class: "btn btn-default" % -->
-    <%= f.primary "Log in" %>
-  <% end %>
-  <%= render partial: "users/shared/links" %>
-</div>
+  <!-- %= link_to "Forgot Password", new_password_path(resource_name), class: "btn btn-default" % -->
+  <%= f.primary "Log in" %>
+<% end %>
+<%= render partial: "users/shared/links" %>

@@ -46,8 +46,12 @@
         <%= flash_alert(key, value) %>
       <% end %>
     <% end %>
-    <div class="container-fluid content">
-      <%= yield %>
-    </div>
+    <% if content_for? :content %>
+      <%= yield :content %>
+    <% else %>
+      <div class="content">
+        <%= yield %>
+      </div>
+    <% end %>
   </body>
 </html>
