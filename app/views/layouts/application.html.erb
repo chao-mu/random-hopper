@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: http://ogp.me/ns#">
   <head>
     <title>Random Hopper</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:image" content="<%= image_url 'logo.png'  %>">
 
+    <%= render 'application/favicon' %>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -15,13 +17,14 @@
     <div class="container-fluid">
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
-        <div class="navbar-header">
+        <div class="navbar-header vcenter">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+          <a class="navbar-logo" href="/"><%= image_tag 'logo.png' %></a>
           <a class="navbar-brand" href="/">Random Hopper</a>
         </div>
         <div class="navbar-collapse collapse" id="navbar">

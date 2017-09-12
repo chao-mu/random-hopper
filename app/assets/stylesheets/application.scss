@@ -33,3 +33,12 @@ p.encourage::before {
 p.encourage::after {
   content: " ☆"
 }
+
+.navbar-logo {
+    @extend .navbar-brand;
+    padding: 10px;
+}
+
+.navbar-logo img {
+    height: 100%;
+}
