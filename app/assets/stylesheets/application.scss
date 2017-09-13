@@ -15,6 +15,7 @@
  */
 
 @import 'bootstrap';
+@import "font-awesome";
 
 .panel-heading h1,
 .panel-heading h2,
@@ -23,6 +24,13 @@
 .panel-heading h5,
 .panel-heading h6 {
     margin: 0;
+    position: relative;
+}
+
+.panel-heading .fa-window-close {
+    position: absolute;
+    right: 0;
+    color: black;
 }
 
 p.encourage {
