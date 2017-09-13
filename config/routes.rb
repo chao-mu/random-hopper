@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "statistics", to: "statistics#index"
+
   post "users/close_greeting", to: "users#close_greeting", as: :close_greeting
 
   post 'hoppers/:id/start', to: "hoppers#start", as: :hopper_start

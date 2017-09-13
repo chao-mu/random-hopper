@@ -7,4 +7,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def self.last_seen(start)
+    User.where("last_seen_at > ?", start)
+  end
 end
