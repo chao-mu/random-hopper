@@ -11,7 +11,14 @@ class HoppersController < ApplicationController
   end
 
   def pin
-    current_user.pin @hopper
+    current_user.pinned_hopper = @hopper
+
+    if @hopper.pinned_task.nil? && !@hopper.tasks.empty?
+      @hopper.pinned_task = @hopper.tasks.sample
+      @hopper.save!
+    end
+
+    current_user.show_greeting = false
     current_user.save!
 
     redirect_back fallback_location: root_path
