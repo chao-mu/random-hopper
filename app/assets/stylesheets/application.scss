@@ -16,10 +16,18 @@
 
 @import 'bootstrap';
 
+.panel-heading h1,
+.panel-heading h2,
+.panel-heading h3,
+.panel-heading h4,
+.panel-heading h5,
+.panel-heading h6 {
+    margin: 0;
+}
+
 p.encourage {
     font-weight: bold;
-    margin-top: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     font-style: italic;
     -ms-transform: rotate(-3deg); /* IE 9 */
     -webkit-transform: rotate(-3deg); /* Chrome, Safari, Opera */
@@ -38,13 +46,21 @@ p.encourage::after {
     margin-bottom: 0px;
 }
 
-.navbar, .content, .flash-alert {
+.container-fluid.content {
+    padding: 0;
+}
+
+.navbar, .container-fluid.content, .flash-alert {
     padding-left: ($jumbotron-padding / 2);
     padding-right: ($jumbotron-padding / 2);
     @media(min-width: $screen-sm-min){
         padding-left: ($jumbotron-padding * 2);
         padding-right: ($jumbotron-padding * 2);
     }
+ }
+
+ .content {
+     margin-top: 10px;
  }
 
  .flash-alert {
@@ -63,4 +79,19 @@ p.encourage::after {
 
 .navbar-logo img {
     height: 100%;
+}
+
+.greeting {
+    margin-top: 20px;
+}
+
+.greeting hr {
+   margin: 10px 0px; 
+}
+
+.hopper-msg {
+  font-size: 1.5em;
+  display: inline-block;
+  margin-left: 10px;
+  font-style: italic;
 }
