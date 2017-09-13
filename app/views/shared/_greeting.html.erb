@@ -1,7 +1,12 @@
-<div class="greeting" id="greeting">
-  <% if current_user.pinned_hopper.nil? %>
-    <%= render "shared/greeting_get_started" %>
-  <% else %>
-    <%= render "shared/greeting_pinned" %>
-  <% end %>
+<div class="jumbotron">
+  <h2 class="display-4">Let's get started</h1>
+  <p class="lead">Hoppers store your tasks so you can access them later one at a time.</p>
+  <p class="lead">
+    <ol>
+      <li>Create a hopper to store your tasks</li>
+      <li>Add tasks to it</li>
+      <li>"Pin" it to start working</li>
+    </ol>
+  </p>
+  <%= link_to "Got it!", close_greeting_path, method: :post, class: "btn btn-primary btn-lg" %>
 </div>

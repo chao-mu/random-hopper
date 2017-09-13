@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     end
   end
 
+  post "users/close_greeting", to: "users#close_greeting", as: :close_greeting
+
   post 'hoppers/:id/start', to: "hoppers#start", as: :hopper_start
   post 'hoppers/:id/do_other', to: "hoppers#do_other", as: :hopper_do_other
   post "hoppers/:id/unpin", to: "hoppers#unpin", as: :hopper_unpin

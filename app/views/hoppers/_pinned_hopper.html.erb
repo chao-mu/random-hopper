@@ -1,6 +1,6 @@
 <% hopper = current_user.pinned_hopper %>
 <% task = hopper.pinned_task %>
-<div class="panel panel-default">
+<div class="panel panel-default pinned-hopper">
   <div class="panel-heading"><h3><%= hopper.title %><%= link_to fa_icon("window-close"), hopper_unpin_path(hopper), method: :post %></h3></div>
   <div class="panel-body">
     <% if task.nil? %>
