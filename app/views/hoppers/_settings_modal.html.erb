@@ -1,0 +1,20 @@
+<div data-hopper="<%= hopper.id %>" class="modal fade hopper-settings" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Settings for "<%= hopper.title %>"</h4>
+      </div>
+      <%= bootstrap_form_for hopper, remote: true do |f| %>
+        <div class="modal-body">
+          <%= f.text_field :title, label: "Title", value: hopper.title %>
+          <%= f.check_box :settings_view_contents, label: "Enable 'View Contents' menu item", checked: hopper.settings_view_contents %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <%= f.primary 'Save' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

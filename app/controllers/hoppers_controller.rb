@@ -6,6 +6,10 @@ class HoppersController < ApplicationController
     @pinned = current_user.pinned_hopper
   end
 
+  def update
+    @hopper.update_attributes(hopper_params)
+  end
+
   def export
     send_data @hopper.to_csv, filename: "#{@hopper.title}-#{Date.today.to_formatted_s(:db)}.csv"
   end
@@ -80,6 +84,6 @@ class HoppersController < ApplicationController
 
   private
     def hopper_params
-      params.require(:hopper).permit(:title)
+      params.require(:hopper).permit(:title, :settings_view_contents)
     end
 end

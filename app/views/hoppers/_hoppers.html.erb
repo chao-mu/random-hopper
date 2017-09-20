@@ -2,5 +2,7 @@
   <% @hoppers.each do |hopper| %>
     <hr>
     <%= render "hoppers/hopper", hopper: hopper %>
+    <%= render "tasks/task_modal", hopper: hopper %>
+    <%= render "hoppers/settings_modal", hopper: hopper %>
   <% end %>
 </div>

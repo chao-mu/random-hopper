@@ -1,14 +1,22 @@
-<div class="hopper">
+<div class="hopper" data-hopper="<%= hopper.id %>">
   <h5><%= hopper.title %></h5>
-  <div>
-    <%= link_to "Delete", hopper, method: :delete, class: "btn btn-danger btn-xs", data: { confirm: "Are you sure you want to delete hopper \"#{hopper.title}\"?" } %>
-    <%= link_to "Export", hopper_export_path(hopper), class: "btn btn-default btn-xs" %>
-    <%= render "tasks/task_modal_toggle", class: "btn btn-success btn-xs", hopper: hopper %>
-    <% if current_user.pinned_hopper == hopper %>
-      <%= link_to "Unpin", hopper_unpin_path(hopper), method: :post, class: "btn btn-primary btn-xs" %>
-    <% else %>
-      <%= link_to "Pin", hopper_pin_path(hopper), method: :post, class: "btn btn-primary btn-xs" %>
-    <% end %>
-  </div>
+  <span class="dropdown">
+    <button class="btn btn-default btn-xs" type="button" data-toggle="dropdown">
+      <%= fa_icon "bars" %>
+    </button>
+    <ul class="dropdown-menu">
+      <li><%= link_to "Delete", hopper, method: :delete, data: { confirm: "Are you sure you want to delete hopper \"#{hopper.title}\"?" } %></li>
+      <% if hopper.settings_view_contents %>
+        <li><%= link_to "View Contents", hopper_export_path(hopper) %></li>
+      <% end %> 
+      <li class="divider"></li>
+      <li><%= link_to "Settings", "#", data: {toggle: "modal", target: ".hopper-settings[data-hopper=#{hopper.id}]" } %></li>
+    </ul>
+  </span>
+  <%= render "tasks/task_modal_toggle", class: "btn btn-success btn-xs", hopper: hopper %>
+  <% if current_user.pinned_hopper == hopper %>
+    <%= link_to "Unpin", hopper_unpin_path(hopper), method: :post, class: "btn btn-primary btn-xs" %>
+  <% else %>
+    <%= link_to "Pin", hopper_pin_path(hopper), method: :post, class: "btn btn-primary btn-xs" %>
+  <% end %>
 </div>
-<%= render "tasks/task_modal", hopper: hopper %>

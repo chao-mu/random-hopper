@@ -1,5 +1,5 @@
-<%= render "hoppers/refresh_hopper", hopper: @task.hopper, open: true%>
+<%= render "hoppers/refresh_hopper", hopper: @task.hopper %>
 
-var form = $("#addTaskTo<%= @task.hopper.id %> form");
+var form = $(".add-tasks[data-hopper=<%=@task.hopper.id %>] form");
 form.trigger("reset");
 form.find("[data-focus]").focus();

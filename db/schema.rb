@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170913151920) do
+ActiveRecord::Schema.define(version: 20170920003506) do
 
   create_table "hoppers", force: :cascade do |t|
     t.string "title"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20170913151920) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "pinned_task_id"
+    t.boolean "settings_view_content", default: false, null: false
+    t.boolean "settings_view_contents", default: false, null: false
     t.index ["pinned_task_id"], name: "index_hoppers_on_pinned_task_id"
     t.index ["user_id"], name: "index_hoppers_on_user_id"
   end
@@ -46,6 +48,7 @@ ActiveRecord::Schema.define(version: 20170913151920) do
     t.integer "pinned_hopper_id"
     t.boolean "show_greeting", default: true, null: false
     t.datetime "last_seen_at"
+    t.boolean "settings_view_content", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["pinned_hopper_id"], name: "index_users_on_pinned_hopper_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -1,4 +1,4 @@
-$("#hopper-<%= hopper.id %>-panel").replaceWith("<%= escape_javascript(render 'hoppers/hopper', hopper: hopper, open: true) %>");
+$(".hopper[data-hopper=<%= hopper.id %>]").replaceWith("<%= escape_javascript(render 'hoppers/hopper', hopper: hopper) %>");
 
 <% unless current_user.pinned_hopper.nil? %>
   $(".pinned-hopper").replaceWith("<%= escape_javascript(render 'hoppers/pinned_hopper', hopper: hopper) %>");
